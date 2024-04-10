@@ -24,15 +24,15 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('login', 'login');
 });
 
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('makeBlog', [BlogController::class, 'store']);
-    Route::get('getRandomBlogs', [BlogController::class, 'random']);
-    Route::get('getBlogs', [BlogController::class, 'index']);
-    Route::get('getBlogs/{search}', [BlogController::class, 'searchBlog']);
-    Route::get('getBlog/{id}', [BlogController::class, 'show']);
-    Route::get('userBlog/{author_id}', [BlogController::class, 'getByAuthor']);
-    Route::post('updateBlog/{id}', [BlogController::class, 'update']);
-    Route::get('deleteBlog/{id}', [BlogController::class, 'destroy']);
+Route::controller(BlogController::class)->middleware('auth:sanctum')->prefix('blog')->group(function (){
+    Route::get('/', 'index');
+    Route::get('random', 'random');
+    Route::get('search/{blog}', 'searchBlog');
+    Route::get('{blog}', 'show');
+    Route::get('{user}', 'byAuthor');
+    Route::post('store', 'store');
+    Route::put('update', 'update');
+    Route::delete('destroy', 'destroy');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
