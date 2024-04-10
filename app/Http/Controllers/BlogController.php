@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use App\Models\Blog;
 use Illuminate\Support\Str;
 
 
-class BlogController extends BaseController
+class BlogController extends Controller
 {
 
     /**
