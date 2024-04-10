@@ -14,14 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create("blogs", function(Blueprint $table){
-           $table->bigIncrements('id');
-           $table->string('author', 255);
-           $table->bigInteger('author_id');
-           $table->text('image');
-           $table->string('title', 255);
-           $table->text('content');
-           $table->timestamp('created_at')->nullable()->default(null);
-           $table->timestamp('updated_at')->nullable()->default(null);
+            $table->id();
+            $table->unsignedBigInteger('author_id');
+            $table->text('image');
+            $table->string('title');
+            $table->text('slug');
+            $table->text('content');
+            $table->timestamps();
+
+            $table->foreign('author_id')->references('id')->on('users');
         });
     }
 
