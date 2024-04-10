@@ -19,8 +19,9 @@ return new class extends Migration
             $table->text('image');
             $table->string('title');
             $table->text('slug');
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('author_id')->references('id')->on('users');
         });

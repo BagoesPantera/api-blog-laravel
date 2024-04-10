@@ -15,10 +15,6 @@ use App\Http\Controllers\API\BlogController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::post('login', [AuthController::class, 'login']);
-// Route::post('register', [AuthController::class, 'register']);
-
-
 Route::controller(AuthController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
@@ -27,12 +23,12 @@ Route::controller(AuthController::class)->group(function(){
 Route::controller(BlogController::class)->middleware('auth:sanctum')->prefix('blog')->group(function (){
     Route::get('/', 'index');
     Route::get('random', 'random');
-    Route::get('search/{blog}', 'searchBlog');
+    Route::get('search/{blog}', 'search');
     Route::get('{blog}', 'show');
-    Route::get('{user}', 'byAuthor');
+    Route::get('author/{user}', 'byAuthor');
     Route::post('store', 'store');
-    Route::put('update', 'update');
-    Route::delete('destroy', 'destroy');
+    Route::put('{blog}', 'update');
+    Route::delete('{blog}', 'destroy');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
