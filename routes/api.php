@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -8,10 +9,10 @@ Route::get('/', function(){
     return response()->json(['message' => 'Connected to server'],200);
 });
 
-//Route::controller(AuthController::class)->group(function(){
-//    Route::post('register', 'register');
-//    Route::post('login', 'login');
-//});
+Route::controller(AuthController::class)->group(function(){
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+});
 
 Route::controller(BlogController::class)->middleware('auth:sanctum')->prefix('blog')->group(function (){
     Route::get('/', 'index');

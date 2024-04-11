@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     private function imageUpload($image): string
     {
-        $response = Http::attach('file[0]', $image->getContent(), 'image.'.$image->getClientOriginalExtension())->post('https://discord.com/api/webhooks/1102449165734248489/LRiWv5UqAP8wIFcKYmNTcle3xN0aUWyonLP33ZVgSQP6i7sMfW7cHobP7NvpvMdnxYSr');
+        $response = Http::attach('file[0]', $image->getContent(), 'image.'.$image->getClientOriginalExtension())->post(env('DISCORD_WEBHOOK'));
         return json_decode($response->body(), true)["attachments"][0]["url"];
     }
     /**
