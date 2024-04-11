@@ -1,17 +1,30 @@
-#  Laravel Based API
+##  Laravel Blog API
 
-**requirement :**
+### Getting Started
+- Clone this repository to your local machine.
+- Install the required PHP packages:
+```sh
+composer install
+```
+- Copy `.env.example` to `.env`.
+- Generate new key
+```sh
+php artisan key:generate
+```
+- Create a database and configure the database connection in the `.env` file.
+- Run the following command to migrate the database:
+```sh
+php artisan migrate
+```
+- Run the seeder:
+```sh
+php artisan db:seed
+```
+- Run the following command to start the Laravel development server:
+```sh
+php artisan serve
+```
 
-1. [composer](https://getcomposer.org/)
-2. [xampp](https://www.apachefriends.org/download.html)
-
-**how to run**
-
-1. clone this repository.
-2. open xampp then run apache and mysql.
-3. open phpmyadmin (you can click admin button on mysql beside start button).
-4. create new database and named with `blog_api_database`.
-5.  open terminal on this folder.
-6. run `php artisan migrate` command (you can also check if the migrate or not with `php artisan migrate:status` command.
-7. run `php artisan serve` command.
+### IMPORTANT
+This project used discord webhook to store image, please configure your webhook in `.env`
 
